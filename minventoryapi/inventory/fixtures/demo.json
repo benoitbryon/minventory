@@ -1,0 +1,206 @@
+[
+{
+    "model": "inventory.machine",
+    "pk": 1,
+    "fields": {
+        "created_on": "2016-06-15T10:02:19.570Z",
+        "configuration": "slaves:\r\n- db2.staging.example.com\r\n- db3.staging.example.com",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "db",
+        "last_modified_on": "2016-06-15T15:24:49.292Z",
+        "location": "",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "ns1.example.com",
+        "machine_product": "EG-YXZ",
+        "machine_type": "physical",
+        "name": "db1.staging",
+        "os": "",
+        "role": "dbmaster",
+        "state": "normal",
+        "uuid": "5d40d19760044958a06393d92d629bbb"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 2,
+    "fields": {
+        "created_on": "2016-06-15T10:04:24.469Z",
+        "configuration": "master: db1.staging.example.com",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "db",
+        "last_modified_on": "2016-06-15T15:26:52.628Z",
+        "location": "",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "ns2.example.com",
+        "machine_product": "",
+        "machine_type": "physical",
+        "name": "DB2.staging",
+        "os": "Debian 8 (native)",
+        "role": "dbslave",
+        "state": "normal",
+        "uuid": "feeae166bd5f4822a4ccc2ce8a055324"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 3,
+    "fields": {
+        "created_on": "2016-06-15T10:05:42.202Z",
+        "configuration": "master: db1.staging.example.com",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "db",
+        "last_modified_on": "2016-06-15T10:05:42.202Z",
+        "location": "",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "ns3.example.com",
+        "machine_product": "",
+        "machine_type": "physical",
+        "name": "DB3.staging",
+        "os": "Debian 8 (native)",
+        "role": "dbslave",
+        "state": "normal",
+        "uuid": "5d1bc0c8a2954cb39e97241c0bf1504f"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 4,
+    "fields": {
+        "created_on": "2016-06-15T10:10:49.189Z",
+        "configuration": "",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "",
+        "last_modified_on": "2016-06-15T10:10:49.189Z",
+        "location": "OVH/DC2/12/34",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "ns404.example.com",
+        "machine_product": "",
+        "machine_type": "physical",
+        "name": "HYPERVISOR1.staging",
+        "os": "ESXi 4",
+        "role": "hypervisor",
+        "state": "normal",
+        "uuid": "0464689b8cc44c9f99ce3f086e60a685"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 5,
+    "fields": {
+        "created_on": "2016-06-15T10:14:14.636Z",
+        "configuration": "",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "middleware",
+        "last_modified_on": "2016-06-15T10:14:14.636Z",
+        "location": "",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "middle1",
+        "machine_product": "",
+        "machine_type": "vm",
+        "name": "MIDDLE1.staging",
+        "os": "Debian 6",
+        "role": "middleware",
+        "state": "normal",
+        "uuid": "4ef6f44fab9e417f9a258be6b9999716"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 6,
+    "fields": {
+        "created_on": "2016-06-15T10:15:30.235Z",
+        "configuration": "",
+        "customer": "CUSTOMER1",
+        "environment": "staging",
+        "group": "img",
+        "last_modified_on": "2016-06-15T10:15:30.235Z",
+        "location": "",
+        "machine_lifecycle": "provisioned",
+        "machine_name": "img1",
+        "machine_product": "",
+        "machine_type": "vm",
+        "name": "IMG1.staging",
+        "os": "Debian 6",
+        "role": "img",
+        "state": "normal",
+        "uuid": "c94e89aa63ae44e4a80882a5bdae787a"
+    }
+},
+{
+    "model": "inventory.machine",
+    "pk": 7,
+    "fields": {
+        "created_on": "2016-06-15T10:17:22.991Z",
+        "configuration": "",
+        "customer": "CUSTOMER1",
+        "environment": "prod",
+        "group": "logs",
+        "last_modified_on": "2016-06-15T10:17:22.991Z",
+        "location": "",
+        "machine_lifecycle": "removed",
+        "machine_name": "logs1",
+        "machine_product": "",
+        "machine_type": "vm",
+        "name": " LOGS1.prod",
+        "os": "Debian 7",
+        "role": "logs",
+        "state": "normal",
+        "uuid": "ddda6b5b2367460da5998548d3ce2a50"
+    }
+},
+{
+    "model": "inventory.ipaddress",
+    "pk": "10.0.0.12",
+    "fields": {
+        "created_on": "2016-06-15T13:34:16.053Z",
+        "is_physical": true,
+        "last_modified_on": "2016-06-15T13:34:16.053Z",
+        "machine": 2
+    }
+},
+{
+    "model": "inventory.ipaddress",
+    "pk": "10.0.0.34",
+    "fields": {
+        "created_on": "2016-06-15T13:34:22.209Z",
+        "is_physical": true,
+        "last_modified_on": "2016-06-15T13:34:22.209Z",
+        "machine": 3
+    }
+},
+{
+    "model": "inventory.ipaddress",
+    "pk": "10.0.0.56",
+    "fields": {
+        "created_on": "2016-06-15T13:33:31.292Z",
+        "is_physical": false,
+        "last_modified_on": "2016-06-15T13:33:31.292Z",
+        "machine": 1
+    }
+},
+{
+    "model": "inventory.ipaddress",
+    "pk": "10.0.0.78",
+    "fields": {
+        "created_on": "2016-06-15T13:33:37.616Z",
+        "is_physical": false,
+        "last_modified_on": "2016-06-15T13:33:37.616Z",
+        "machine": 1
+    }
+},
+{
+    "model": "inventory.ipaddress",
+    "pk": "10.0.0.90",
+    "fields": {
+        "created_on": "2016-06-15T13:33:08.593Z",
+        "is_physical": true,
+        "last_modified_on": "2016-06-15T13:33:08.593Z",
+        "machine": 1
+    }
+}
+]

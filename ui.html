@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Inventory</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="content"></div>
+    <div id="status"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <script type="text/babel">
+
+var api_endpoint = "http://localhost:8000/machines/";
+
+var MachineLine = React.createClass({
+  render: function() {
+    return (
+      <tr className="machine">
+        {this.props.children}
+      </tr>
+    );
+  }
+});
+
+var MachineTable = React.createClass({
+  render: function() {
+    var machineNodes = this.props.data.map(function(machine) {
+      return (
+        <MachineLine key={machine.uuid}>
+          <td className="machine_type">{machine.machine_type}</td>
+          <td className="machine_name">{machine.machine_name}</td>
+          <td className="machine_product">{machine.machine_product}</td>
+          <td className="location">{machine.location}</td>
+          <td className="ips">
+            {machine.ips.map(function(ip) {
+              var ipClass = ip.is_physical ? 'physical' : 'virtual';
+              return <p className={ipClass}>{ip.ip}</p>;
+            })}
+          </td>
+          <td className="os">{machine.os}</td>
+          <td className="customer">{machine.customer}</td>
+          <td className="environment">{machine.environment}</td>
+          <td className="group">{machine.group}</td>
+          <td className="role">{machine.role}</td>
+          <td className="name">{machine.name}</td>
+          <td className="machine_lifecycle">{machine.machine_lifecycle}</td>
+          <td className="state">{machine.state}</td>
+          <td className="configuration"><pre>{machine.configuration}</pre></td>
+        </MachineLine>
+      );
+    });
+    return (
+      <table className="machine-list table table-striped table-hover">
+        <thead className="thead-default">
+          <tr>
+            <th className="machine_type">Type</th>
+            <th className="machine_name">Machine name</th>
+            <th className="machine_product">Product</th>
+            <th className="location">Location</th>
+            <th className="ips">IPs</th>
+            <th className="os">OS</th>
+            <th className="customer">Customer</th>
+            <th className="environment">Environment</th>
+            <th className="group">Group</th>
+            <th className="role">Role</th>
+            <th className="name">Name</th>
+            <th className="machine_lifecycle">Lifecycle</th>
+            <th className="state">State</th>
+            <th className="configuration">Configuration</th>
+          </tr>
+        </thead>
+        <tbody>
+          {machineNodes}
+        </tbody>
+      </table>
+    );
+  }
+});
+
+var MachineBox = React.createClass({
+  loadMachinesFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        $('#status').html('<p class="alert alert-success" role="alert">Loaded data from API.</p>').fadeOut(3000);
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+        $('#status').html('<p class="alert alert-danger" role="alert">Error loading data from API.</p>');
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    this.loadMachinesFromServer();
+    setInterval(this.loadMachinesFromServer, this.props.pollInterval);
+  },
+  render: function() {
+    return (
+      <section className="machine-box container-fluid">
+        <h1>Machines</h1>
+        <MachineTable data={this.state.data} />
+      </section>
+    );
+  }
+});
+
+ReactDOM.render(
+  <MachineBox url={api_endpoint} pollInterval={5000} />,
+  document.getElementById('content')
+);
+
+    </script>
+  </body>
+</html>

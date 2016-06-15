@@ -1,0 +1,13 @@
+ALLOWED_HOSTS:
+  - '*'
+CORS_ORIGIN_ALLOW_ALL: True
+DATABASES:
+  default:
+    ENGINE: django.db.backends.sqlite3
+    NAME: var/api.sqlite3
+DEBUG: True
+MEDIA_ROOT: var/api/media
+MEDIA_URL: /media/
+SECRET_KEY: "This is not a safe secret!"
+STATIC_ROOT: var/api/static
+STATIC_URL: /static/

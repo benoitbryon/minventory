@@ -1,0 +1,12 @@
+#########
+Changelog
+#########
+
+Here are release notes.
+
+
+0.1.dev0 (unreleased)
+=====================
+
+Initial prototype of inventory API and UI: starting with machines and IP
+addresses.

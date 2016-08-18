@@ -1,0 +1,19 @@
+############
+Installation
+############
+
+****************
+Running the demo
+****************
+
+* Get the code: ``git clone git@github.com:benoitbryon/minventory.git && cd minventory/``
+* Run database (requires Docker): ``make db``
+* Run API: ``make api`` (`virtualenv`_ and Python3 recommended)
+
+
+Inspect the service:
+
+* API is served at http://localhost:5000.
+
+
+.. _`virtualenv`: https://virtualenv.pypa.io/

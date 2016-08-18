@@ -12,25 +12,6 @@ Basically, it consists in:
 * an UI, i.e. a client-side application that displays data using server's API.
 
 
-****************
-Running the demo
-****************
-
-* Get the code: ``git clone git@github.com:benoitbryon/minventory.git && cd minventory/``
-* Run API: ``make api`` (`virtualenv`_ and Python2 recommended)
-
-Optionally, you can load demo data with ``make loaddata``.
-
-.. note:: At this stage, UI hardcodes API's endpoint, i.e. localhost:8000.
-
-Inspect the service:
-
-* UI lives in file ``ui.html`` in code's root folder. Just open it in a
-  browser.
-* API is served at http://localhost:8000.
-* API documentation lives at http://localhost:8000/docs/.
-
-
 ******
 Status
 ******
@@ -47,6 +28,3 @@ Ressources
 **********
 
 * Code repository: https://github.com/benoitbryon/minventory
-
-
-.. _`virtualenv`: https://virtualenv.pypa.io/

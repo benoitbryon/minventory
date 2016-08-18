@@ -22,30 +22,23 @@ EMAIL = 'benoit@marmelune.net'
 LICENSE = 'BSD'
 URL = 'https://github.com/benoitbryon/minventoryapi'
 CLASSIFIERS = [
-    'Framework :: Django',
-    'Framework :: Django :: 1.9',
+    'Framework :: Flask',
     'License :: OSI Approved :: BSD License',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.5',
 ]
 KEYWORDS = []
 PACKAGES = [NAME]
 REQUIREMENTS = [
-    'Django',
-    'django-confit>=0.6',
-    'django-cors-headers',
-    'django-debug-toolbar',
-    'django-filter',
-    'django-rest-swagger',
-    'django-uuidfield',
-    'djangorestframework',
-    'docutils',
-    'Markdown',
+    'Eve',
+    'PyYAML',
     'setuptools',
 ]
 ENTRY_POINTS = {
-    'console_scripts': ['minventoryapi = minventoryapi.manage:main']
+    'console_scripts': ['minventoryapi = minventoryapi.run:main']
 }
 SETUP_REQUIREMENTS = ['setuptools']
 TEST_REQUIREMENTS = []

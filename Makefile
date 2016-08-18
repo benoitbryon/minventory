@@ -3,6 +3,7 @@
 # For standard installation, see INSTALL.
 # For details about development environment, see CONTRIBUTING.rst.
 #
+TOX = tox
 
 
 #: help - Display callable targets.
@@ -34,14 +35,20 @@ maintainer-clean: clean
 .PHONY: develop
 develop:
 	mkdir -p var
+	pip install tox
 	pip install -e .
-	minventoryapi migrate
+
+
+#: db - Run API's database storage.
+.PHONY: db
+db:
+	docker-compose up mongo
 
 
 #: api - Run API's demo server.
 .PHONY: api
 api: develop
-	minventoryapi runserver 0.0.0.0:8000
+	minventoryapi
 
 
 #: ui - Run UI's demo server.
@@ -51,10 +58,22 @@ ui:
 
 #: loaddata - Backup current data then load demo data.
 loaddata: dumpdata
-	minventoryapi loaddata demo.json
 
 
 #: dumpdata - Backup data.
 dumpdata:
 	mkdir -p var
-	minventoryapi dumpdata --indent=4 --format=json inventory > var/data-`date -Iseconds`.json
+
+
+#: sphinx - Build Sphinx documentation in var/docs/html
+sphinx:
+	$(TOX) -e sphinx
+
+
+#: readme - Build standalone documentation files (README, CONTRIBUTING...).
+readme:
+	$(TOX) -e readme
+
+
+#: documentation - Build standalone documentation files and Sphinx docs.
+documentation: sphinx readme

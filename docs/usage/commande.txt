@@ -1,0 +1,250 @@
+#########################################
+De l'expression des besoins à la commande
+#########################################
+
+.. contents::
+   :local:
+   :backlinks: top
+
+
+********************
+Contexte et scénario
+********************
+
+Un client exprime un besoin auprès d'un ops. Celui-ci questionne et conseille.
+Au fur et à mesure des échanges, l'ops précise le projet d'infrastructure et le
+documente dans l'inventaire. La discussion aboutit à un projet d'infrastrucute
+contenant tous les éléments nécessaires pour passer commande auprès de
+fournisseurs.
+
+.. seqdiag::
+
+   seqdiag {
+     client -> ops [label="J'ai besoin d'un blog", note="Le client exprime les besoins"];
+     ops => inventaire [label="Client: Alpha\nService: blog\nÉtat: projet"];
+     client <- ops [label="Plateforme ?\nPerformance ?\nSécurité ?", note="Ops questionne et conseille"];
+     client -> ops [label="Wordpress\n100k lecteurs en Espagne"];
+     ops => inventaire [label="Serveurs: PHP + MySQL\nPays: Espagne", note="Ops précise le projet"];
+     client <- ops [label="Projet d'infrastructure", note="Projet prêt à commander auprès des fournisseurs"];
+   } 
+
+
+***************
+Créer un client
+***************
+
+.. tip::
+
+   La requête qui suit peut être exécutée avec
+   `httpie <https://pypi.python.org/pypi/httpie/>`_ par exemple :
+
+   .. code:: sh
+
+      $ echo '{"name": "Alpha"}' | http --verbose POST http://localhost:5000/clients
+
+
+.. http:post:: /clients
+
+   :<json string name: Le nom du client.
+   
+   .. code:: http
+   
+      POST /clients HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      
+      {
+          "name": "Alpha"
+      } 
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+   
+   .. code:: http
+   
+      HTTP/1.0 201 CREATED
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 14:05:40 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 14:05:40 GMT", 
+          "_etag": "8c67884e5afcedcfd5dc6c3e442fb7163508697b", 
+          "_id": "57b5c0b40eb50a104837be7f", 
+          "_links": {
+              "self": {
+                  "href": "clients/57b5c0b40eb50a104837be7f", 
+                  "title": "Client"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 14:05:40 GMT"
+      }
+
+
+****************
+Créer un service
+****************
+
+.. http:post:: /services
+
+   :<json string client: L'ID du client.
+   :<json string name: Le nom du service.
+
+   .. code:: http
+   
+      POST /services HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+
+      {
+          "client": "57b5c0b40eb50a104837be7f", 
+          "name": "Blog"
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 201 CREATED
+      Content-Length: 282
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 14:54:31 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 14:54:31 GMT", 
+          "_etag": "1249f0ee53a55678ec3f56b875e6b0bdc7b810c9", 
+          "_id": "57b5cc270eb50a2be9eed216", 
+          "_links": {
+              "self": {
+                  "href": "services/57b5cc270eb50a2be9eed216", 
+                  "title": "Service"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 14:54:31 GMT"
+      }
+
+
+****************
+Créer un serveur
+****************
+
+.. http:post:: /servers
+
+   :<json string service: L'ID du service.
+   :<json string lifecycle: L'étape dans le cycle de vie de la machine. Par défaut : ``draft``.
+   :<json string state: L'état de la machine. Par défaut : ``unavailable``.
+   
+   Toutes les caractéristiques additionnelles sont enregistrées.
+
+   .. code:: http
+
+      POST /servers HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      
+      {
+          "name": "blog", 
+          "service": "57b5cc270eb50a2be9eed216"
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 201 CREATED
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 15:23:51 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 15:23:51 GMT", 
+          "_etag": "2b22b75a614371a8006089044231c9c30411d648", 
+          "_id": "57b5d3070eb50a2ebf9348e3", 
+          "_links": {
+              "self": {
+                  "href": "servers/57b5d3070eb50a2ebf9348e3", 
+                  "title": "Server"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 15:23:51 GMT"
+      }
+
+
+*******************
+Modifier un serveur
+*******************
+
+.. http:patch:: /servers/(id)
+
+   :<header If-Match: Le n° de révision (ETAG) de l'objet.
+   :<json *: Toutes les caractéristiques fournies sont créées ou mises à jour tel quel.
+
+   .. code:: http
+
+      PATCH /servers/57b5d3070eb50a2ebf9348e3 HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      If-Match: 2b22b75a614371a8006089044231c9c30411d648
+      
+      {
+          "lifecycle": "purchasing", 
+          "location": {
+              "city": "Barcelona", 
+              "country": "Spain"
+          }
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 200 OK
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 15:32:27 GMT
+      ETag: d62f17a82a6e2b8c72aec50459c7f3bc3da7f8ff
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 15:23:51 GMT", 
+          "_etag": "d62f17a82a6e2b8c72aec50459c7f3bc3da7f8ff", 
+          "_id": "57b5d3070eb50a2ebf9348e3", 
+          "_links": {
+              "self": {
+                  "href": "servers/57b5d3070eb50a2ebf9348e3", 
+                  "title": "Server"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 15:32:27 GMT"
+      }
+
+
+***********************************
+Suivre le cycle de vie d'un serveur
+***********************************
+
+Le champ ``lifecycle`` permet de suivre le cycle de vie des serveurs.
+
+Les valeurs autorisées sont définies dans la configuration des schémas Eve.
+
+Filtrer sur ce champ permet d'obtenir différentes listes utiles. Par exemple :
+
+La liste des serveurs "brouillon" pour un service donné :
+``http GET 'http://localhost:5000/servers?where={"service": "57b5cc270eb50a2be9eed216"}'``
+
+La liste des serveurs "en cours de commande" :
+``http GET 'http://localhost:5000/servers?where={"lifecycle": "purchasing"}'``

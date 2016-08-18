@@ -20,5 +20,5 @@ Quickstart
 
 Tips:
 
-* Local API settings, such as SECRET_KEY, live in ``etc/minventoryapi.yaml``.
-* ``minventoryapi`` command replaces Django project's ``manage.py``.
+* Local API settings live in ``etc/minventoryapi.yaml``.
+* ``minventoryapi`` command is CLI for web service.

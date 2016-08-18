@@ -1,0 +1,15 @@
+#####
+Usage
+#####
+
+Cette section décrit l'usage de l'API minventory au travers d'un exemple.
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+
+   commande
+   livraison
+   deploiement
+   maintenance
+   resiliation

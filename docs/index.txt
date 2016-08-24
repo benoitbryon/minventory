@@ -7,10 +7,13 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :titlesonly:
 
    install
-   usage/index
+   overview
+   models/index
+   scenarios/index
+   recipes/index
+   eve
    contributing
 
 

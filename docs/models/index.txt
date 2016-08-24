@@ -1,0 +1,48 @@
+##################
+Modèles de données
+##################
+
+Cette section décrit les modèles de données utilisés pour l'inventaire.
+
+Une infrastructure web est un ensemble d'éléments de natures différentes :
+
+* serveurs
+* réseaux
+* accès.
+
+Ces éléments sont regroupés par services.
+
+Les services (et donc les infrastructures) dépendent d'un client.
+
+.. toctree::
+   :maxdepth: 2
+   :titlesonly:
+
+   clients
+   services
+   infrastructure_items
+
+
+*****************************
+Un modèle de données flexible
+*****************************
+
+L'inventaire permet une saisie de données flexible. Cela favorise l'autonomie
+de ses utilisateurs. En conséquence, les listes de champs fournies dans la
+suite de cette page ne contiennent que les champs nécessaires au fonctionnement
+minimal de l'inventaire. Libre aux utilisateurs d'ajouter d'autres champs,
+lesquels ne seront peut-être pas listés ici.
+
+.. warning::
+
+   Un modèle de données flexible diminue l'intervention de développeurs et
+   favorise l'autonomie des utilisateurs. Il convient de porter l'attention de
+   ces utilisateurs sur certains points importants :
+
+   * La migration de schémas et de données n'est pas automatique. Par exemple,
+     ajouter un attribut dans un enregistrement n'affecte pas automatiquement
+     les autres enregistrements.
+
+   * La validation des données doit être réalisée côté client. Côté serveur,
+     certaines validations peuvent être effectuées, mais elles sont plutôt
+     basiques, sans quoi elles nécessiteraient un peu de développement.

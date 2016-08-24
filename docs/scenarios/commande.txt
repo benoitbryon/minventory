@@ -1,0 +1,34 @@
+#########################################
+De l'expression des besoins à la commande
+#########################################
+
+Un client exprime un besoin auprès d'un ops. Celui-ci questionne et conseille.
+Au fur et à mesure des échanges, l'ops précise le projet d'infrastructure et le
+documente dans l'inventaire. La discussion aboutit à un projet d'infrastrucute
+contenant tous les éléments nécessaires pour passer commande auprès de
+fournisseurs.
+
+.. seqdiag::
+
+   seqdiag {
+     client -> ops [label="J'ai besoin d'un blog", note="Le client exprime les besoins"];
+     ops => inventaire [label="Client: Alpha\nService: blog\nÉtat: projet"];
+     client <- ops [label="Plateforme ?\nPerformance ?\nSécurité ?", note="Ops questionne et conseille"];
+     client -> ops [label="Wordpress\n100k lecteurs en Espagne"];
+     ops => inventaire [label="Serveurs: PHP + MySQL\nPays: Espagne", note="Ops précise le projet"];
+     client <- ops [label="Projet d'infrastructure", note="Projet prêt à commander auprès des fournisseurs"];
+   }
+
+
+***************
+Recettes utiles
+***************
+
+* :doc:`/recipes/client_create`
+* :doc:`/recipes/service_create`
+* :doc:`/recipes/server_create`
+* :doc:`/recipes/server_update`
+* Lister tous les services d'un client
+* Lister tous les serveurs d'un client
+* Lister toute l'infrastructure d'un service (serveurs, réseaux, accès)
+* Lister les serveurs en étape "brouillon" ou "en cours de commande"

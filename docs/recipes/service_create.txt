@@ -1,0 +1,45 @@
+################
+Créer un service
+################
+
+.. http:post:: /services
+
+   :<json string client: L'ID du client.
+   :<json string name: Le nom du service.
+
+   .. code:: http
+   
+      POST /services HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+
+      {
+          "client": "57b5c0b40eb50a104837be7f", 
+          "name": "Blog"
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 201 CREATED
+      Content-Length: 282
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 14:54:31 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 14:54:31 GMT", 
+          "_etag": "1249f0ee53a55678ec3f56b875e6b0bdc7b810c9", 
+          "_id": "57b5cc270eb50a2be9eed216", 
+          "_links": {
+              "self": {
+                  "href": "services/57b5cc270eb50a2be9eed216", 
+                  "title": "Service"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 14:54:31 GMT"
+      }

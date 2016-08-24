@@ -3,7 +3,8 @@
 # For standard installation, see INSTALL.
 # For details about development environment, see CONTRIBUTING.rst.
 #
-TOX = tox
+TOX ?= tox
+GORUN ?= gorun.py
 
 
 #: help - Display callable targets.
@@ -77,3 +78,9 @@ readme:
 
 #: documentation - Build standalone documentation files and Sphinx docs.
 documentation: sphinx readme
+
+
+#: watch - Watch in-development files and automatically build them on update.
+.PHONY: watch
+watch: develop
+	$(TOX) -e watch

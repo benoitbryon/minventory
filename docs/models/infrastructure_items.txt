@@ -1,0 +1,66 @@
+#########################
+Éléments d'infrastructure
+#########################
+
+Il n'y a pas un seul modèle de donnée "élément d'infrastructure", mais
+plusieurs. Ceux-ci ont les attributs suivants en commun :
+
+id
+  Un identifiant unique.
+
+client
+  Une référence au client.
+
+name
+  Un nom, unique pour le client.
+
+lifecycle
+  L'étape dans le cycle de vie de l'élément d'infrastructure. Les valeurs
+  possibles sont :
+
+  - nonexistent: pas d'existence physique
+  - draft: projet en cours d'étude
+  - purchasing: en cours de commande chez un hébergeur
+  - purchased: l'hébergeur a signifié la livraison
+  - creating: 
+  - created: 
+  - installing: installation de l'OS
+  - installed: l'OS est installé
+  - provisioning: déploiement avec Ansible ou un outil similaire
+  - provisioned: déploiement terminé
+  - running: le service est en fonctionnement
+  - removing: en cours de suppression
+  - removed: supprimé ou résilié
+
+state
+  L'état de l'élément d'infrastructure, relativement à son cycle de vie. Les
+  valeurs possibles sont :
+
+  - unavailable: état inconnu
+  - normal: état correct, pas de défaut connu
+  - warning: un point d'attention a été relevé, pas forcément bloquant
+  - error: incident, panne ou erreur
+
+
+********
+Serveurs
+********
+
+Les serveurs sont les machines commandées auprès des hébergeurs.
+
+
+*******
+Réseaux
+*******
+
+Les réseaux décrivent des adresses IP ou plages d'adresses IP explicitement
+commandées auprès des hébergeurs. Ils doivent être distingués des adresses IP
+automatiquement attribuées aux serveurs lors de la livraison de ceux-ci. En
+effet les premiers peuvent être commandés ou résiliés par eux-même, tandis que
+les seconds sont liés à un serveur.
+
+
+*****
+Accès
+*****
+

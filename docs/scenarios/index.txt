@@ -1,6 +1,6 @@
-#####
-Usage
-#####
+#########
+Scénarios
+#########
 
 Cette section décrit l'usage de l'API minventory au travers d'un exemple.
 

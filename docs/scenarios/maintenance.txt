@@ -1,0 +1,30 @@
+##########################
+Maintenance et supervision
+##########################
+
+Les éléments d'architecture sont en service.
+
+Ops configure les outils de supervision pour assurer le monitoring des éléments
+d'infrastructure. En cas de détection d'incident, l'outil de monitoring déclare
+la panne dans l'inventaire.
+
+.. note::
+
+   Comparer l'état théorique et l'état réel d'un élément d'infrastructure peut
+   faire partie des vérifications réalisées par le monitoring.
+
+En cas de mise à jour des éléments d'infrastructure, l'inventaire est mis à
+jour.
+
+En cas d'incident, l'historique des modifications d'un serveur peut faciliter
+le diagnostic.
+
+
+***************
+Recettes utiles
+***************
+
+* Lire le détail d'un serveur
+* Modifier un serveur
+* Consulter l'historique des révisions d'un serveur
+* Comparer deux révisions d'un serveur

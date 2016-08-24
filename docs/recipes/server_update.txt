@@ -1,0 +1,50 @@
+###################
+Modifier un serveur
+###################
+
+.. http:patch:: /servers/(id)
+
+   :<header If-Match: Le n° de révision (ETAG) de l'objet.
+   :<json *: Toutes les caractéristiques fournies sont créées ou mises à jour tel quel.
+
+   .. code:: http
+
+      PATCH /servers/57b5d3070eb50a2ebf9348e3 HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      If-Match: 2b22b75a614371a8006089044231c9c30411d648
+      
+      {
+          "lifecycle": "purchasing", 
+          "location": {
+              "city": "Barcelona", 
+              "country": "Spain"
+          }
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 200 OK
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 15:32:27 GMT
+      ETag: d62f17a82a6e2b8c72aec50459c7f3bc3da7f8ff
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 15:23:51 GMT", 
+          "_etag": "d62f17a82a6e2b8c72aec50459c7f3bc3da7f8ff", 
+          "_id": "57b5d3070eb50a2ebf9348e3", 
+          "_links": {
+              "self": {
+                  "href": "servers/57b5d3070eb50a2ebf9348e3", 
+                  "title": "Server"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 15:32:27 GMT"
+      }

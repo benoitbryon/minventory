@@ -1,0 +1,15 @@
+########
+Services
+########
+
+Un service permet d'associer des méta-données à plusieurs éléments
+d'infrastructure. Autrement dit, les services sont des groupes d'éléments
+d'architecture.
+
+Les attributs minimaux d'un service sont :
+
+id
+  Un identifiant unique.
+
+name
+  Le nom du service.

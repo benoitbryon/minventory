@@ -1,0 +1,21 @@
+####################################
+De la livraison à la mise en service
+####################################
+
+Ops a accès aux éléments d'infrastructure et ceux-ci correspondent à la
+commande.
+
+Ops référence les nouveaux éléments dans la configuration de ses outils de
+déploiement (typiquement Ansible) puis les exécute. L'outil de déploiement lit
+éventuellement certaines options de configuration directement dans l'inventaire
+(par exemple la configuration des accès ou les adresses IP disponibles). Une
+fois les opérations terminées, les informations des éléments d'architecture
+sont mises à jour (données sur les logiciels installés, état).
+
+
+***************
+Recettes utiles
+***************
+
+* Lire le détail d'un serveur
+* Modifier un serveur

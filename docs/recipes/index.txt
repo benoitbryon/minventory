@@ -1,0 +1,15 @@
+########
+Recettes
+########
+
+Cette section liste des cas d'utilisation avec la recette pour les réaliser.
+
+.. toctree::
+   :glob:
+   
+   *
+
+.. tip::
+
+   Les requêtes fournies dans les exemples peuvent être exécutées avec
+   `httpie <https://pypi.python.org/pypi/httpie/>`_.

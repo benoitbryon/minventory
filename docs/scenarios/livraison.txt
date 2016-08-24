@@ -1,0 +1,20 @@
+#############################
+De la commande à la livraison
+#############################
+
+Le service achat du client commande les éléments d'infrastructure auprès des
+fournisseurs. Il transfère aux ops les e-mails ou notifications de livraison
+envoyées par les hébergeurs. Un ops procède alors à l'initialisation des
+éléments. Ops lance des commandes (typiquement Ansible) afin de collecter les
+caractéristiques réelles des éléments livrés, puis les compare avec les
+données spécifiées en commande. En cas de différence, ops notifie le client.
+
+
+***************
+Recettes utiles
+***************
+
+* Lister les serveurs en étape "en cours de commande" d'un client
+* Modifier un serveur
+* Obtenir les révisions d'un serveur
+* Comparer deux révisions d'un serveur

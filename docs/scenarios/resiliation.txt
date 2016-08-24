@@ -1,0 +1,17 @@
+###########
+Résiliation
+###########
+
+Un élement d'infrastructure peut être remplacé, résilié ou simplement
+désactivé. Il en reste néanmoins une trace dans l'inventaire, d'abord afin de
+pouvoir suivre l'évolution de la procédure de clôture, et ensuite afin de
+pouvoir consulter l'historique en cas de besoin.
+
+
+***************
+Recettes utiles
+***************
+
+* Lister les serveurs en cours de résiliation ou résiliés
+* Consulter l'historique des révisions d'un serveur
+* Comparer deux révisions d'un serveur

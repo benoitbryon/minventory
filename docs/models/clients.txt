@@ -1,0 +1,13 @@
+#######
+Clients
+#######
+
+Il s'agit d'un client de l'ops.
+
+Les attributs minimaux d'un client sont :
+
+id
+  Un identifiant unique.
+
+name
+  Le nom du client, lui aussi unique pour éviter d'éventuelles confusions.

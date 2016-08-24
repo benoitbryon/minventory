@@ -1,0 +1,48 @@
+################
+Créer un serveur
+################
+
+.. http:post:: /servers
+
+   :<json string service: L'ID du service.
+   :<json string lifecycle: L'étape dans le cycle de vie de la machine. Par défaut : ``draft``.
+   :<json string state: L'état de la machine. Par défaut : ``unavailable``.
+   
+   Toutes les caractéristiques additionnelles sont enregistrées.
+
+   .. code:: http
+
+      POST /servers HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      
+      {
+          "name": "blog", 
+          "service": "57b5cc270eb50a2be9eed216"
+      }
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+
+   .. code:: http
+
+      HTTP/1.0 201 CREATED
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 15:23:51 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 15:23:51 GMT", 
+          "_etag": "2b22b75a614371a8006089044231c9c30411d648", 
+          "_id": "57b5d3070eb50a2ebf9348e3", 
+          "_links": {
+              "self": {
+                  "href": "servers/57b5d3070eb50a2ebf9348e3", 
+                  "title": "Server"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 15:23:51 GMT"
+      }

@@ -1,0 +1,24 @@
+###################
+Lister les serveurs
+###################
+
+
+*******************************************
+Lister les serveurs selon leur étape de vie
+*******************************************
+
+.. http:get:: /servers?where={"lifecycle": "(lifecycle)"}
+
+
+
+*************************************
+Lister tous les serveurs d'un service
+*************************************
+
+
+
+************************************
+Lister tous les serveurs d'un client
+************************************
+
+

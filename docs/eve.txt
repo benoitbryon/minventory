@@ -1,0 +1,40 @@
+###
+Eve
+###
+
+`Python EVE <http://python-eve.org/>`_ est l'outil choisi pour fournir l'API
+de l'inventaire.
+
+
+*****************
+Ressources utiles
+*****************
+
+* La documentation de l'API : http://python-eve.org/
+* La documentation de la base de données : https://docs.mongodb.com/
+
+
+************************
+Fichier de configuration
+************************
+
+Le fichier de configuration dans le dépôt minventory de référence est
+``etc/minventoryapi.yaml``. La commande ``minventoryapi`` est un wrapper pour
+Eve qui charge le contenu du fichier YAML et le passe à Eve en tant que
+dictionnaire. 
+
+Source :
+https://github.com/benoitbryon/minventory/blob/python-eve/minventoryapi/run.py
+
+
+****************
+Notes techniques
+****************
+
+* La configuration des schémas est évaluée au lancement de l'application.
+  Autrement dit, pour ajouter un nouveau modèle de données ou pour modifier un
+  schéma, le service Eve doit être redémarré.
+
+* Eve ne gère pas les migrations de données. Un changement dans les schémas
+  (la définition théorique des attributs) n'affecte pas automatiquement les
+  données (les valeurs réelles).

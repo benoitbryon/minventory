@@ -1,0 +1,44 @@
+###############
+Créer un client
+###############
+
+.. http:post:: /clients
+
+   :<json string name: Le nom du client.
+   
+   .. code:: http
+   
+      POST /clients HTTP/1.1
+      Accept: application/json
+      Content-Type: application/json
+      Host: localhost:5000
+      
+      {
+          "name": "Alpha"
+      } 
+   
+   :>json string _id: L'ID de l'objet créé.
+   :>json string _etag: Le n° de révision de l'objet créé, nécessaire pour une modification.
+   
+   .. code:: http
+   
+      HTTP/1.0 201 CREATED
+      Content-Length: 280
+      Content-Type: application/json
+      Date: Thu, 18 Aug 2016 14:05:40 GMT
+      Server: Eve/0.6.4 Werkzeug/0.11.3 Python/3.5.1
+      
+      {
+          "_created": "Thu, 18 Aug 2016 14:05:40 GMT", 
+          "_etag": "8c67884e5afcedcfd5dc6c3e442fb7163508697b", 
+          "_id": "57b5c0b40eb50a104837be7f", 
+          "_links": {
+              "self": {
+                  "href": "clients/57b5c0b40eb50a104837be7f", 
+                  "title": "Client"
+              }
+          }, 
+          "_status": "OK", 
+          "_updated": "Thu, 18 Aug 2016 14:05:40 GMT"
+      }
+

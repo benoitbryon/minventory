@@ -1,0 +1,113 @@
+##############
+Vue d'ensemble
+##############
+
+Ce document présente le cas d'utilisation original `minventory`, auquel les
+exemples de cette documentation font référence.
+
+
+************
+L'inventaire
+************
+
+Un administrateur système indépendant (:term:`ops`) est mandaté par ses clients
+pour le choix, la mise en service et la maintenance d'infrastructures web.
+
+.. image:: /_static/overview-actors.png
+
+Voici les acteurs principaux du cas d'utilisation :
+
+.. glossary::
+
+   Inventaire
+     .. image:: /_static/icon-api.png
+        :class: float-left
+
+     L'inventaire rend compte de la connaissance théorique des infrastructures
+     web tout au long de leur cycle de vie :
+
+     * les souhaits au moment de l'élaboration d'un projet ou d'une commande ;
+     * un relevé lors de la réception d'une livraison d'un serveur ;
+     * un rapport après un déploiement ou la détection d'une erreur ;
+     * etc...
+
+     L'inventaire est principalement composé d'une API, d'une base de données
+     et d'un système de notifications.
+
+     L'inventaire n'est pas mis à jour en temps réel, mais plutôt à intervalle
+     régulier. La mise à jour est effectuée par les différents acteurs qui
+     utilisent les infrastructures et peuvent donc témoigner de leur état. Ces
+     acteurs peuvent être humains ou robots.
+
+   Ops   
+     .. image:: /_static/icon-ops.png
+        :class: float-left
+
+     L'administrateur système, membre de l'équipe "operations".
+
+     L'inventaire est un de ses outils, avec lequel il peut suivre les
+     infrastructures web tout au long de leur cycle de vie. 
+
+     * Il reçoit les demandes de son client, le questionne, le conseille et
+       prépare les projets d'infrastructure.
+
+     * Une fois les éléments d'infrastructure (serveurs, adresses IP) livrés,
+       il vérifie que ceux-ci correspondent à la commande, les configure, et y
+       déploie les logiciels et données utiles au fonctionnement des services
+       demandés par le client.
+
+     * Il assure la supervision et la maintenance des infrastructures web.
+
+     * Lorsque c'est nécessaire, il ferme les services.
+
+   Client
+     .. image:: /_static/icon-user.png
+        :class: float-left
+
+     Le client, propriétaire des infrastructures web. Il mandate l'ops pour
+     leur administration.
+
+     Il peut consulter l'inventaire afin de consulter une configuration
+     (développeurs par exemple) ou l'avancement d'un projet (DSI par exemple).
+
+   Serveur
+     .. image:: /_static/icon-servers.png
+        :class: float-left
+
+     Les éléments d'infrastructure sont les produits commandés auprès des
+     fournisseurs, principalement les hébergeurs. Ces éléments peuvent être de
+     différentes natures : serveurs, réseaux (plages d'adresse IP), accès
+     sécurisés...
+
+   Hébergeur
+     .. image:: /_static/icon-hosting.png
+        :class: float-left
+
+     Le matériel, la connexion réseau et certains éléments de sécurité sont
+     fournis par les hébergeurs. Une infrastructure peut être répartie chez
+     plusieurs hébergeurs, par exemple pour des questions de redondance des
+     services.
+
+   Déploiement
+     .. image:: /_static/icon-deploy.png
+        :class: float-left
+
+     L'ops utilise différents outils pour installer et mettre à jour les
+     services. Ceux-ci, comme Ansible, facilitent le lancement d'opérations
+     automatisées aussi bien que manuelles.
+
+     Les outils de déploiement peuvent utiliser l'inventaire comme une source
+     de configuration. Ils peuvent également mettre à jour l'inventaire pour
+     rapporter la fin d'une opération, par exemple l'installation réussie d'un
+     nouveau service sur un serveur.
+
+   Supervision
+     .. image:: /_static/icon-monitoring.png
+        :class: float-left
+
+     L'ops configure des outils de supervision.
+
+     Les outils de supervision peuvent lire de la configuration dans
+     l'inventaire et, surtout, y déclarer l'état des systèmes surveillés.
+     Ainsi, visualiser l'inventaire permet aussi de faciliter la détection
+     d'éventuels incidents.
